@@ -15,7 +15,7 @@ The path will be something like this:
 
 $HOME/src/qiime/qiime-1.8.0-release/bin
 
-#######TO RUN AN ANALYSIS
+#######TO RUN AN ANALYSIS- the run_analysis directory
 
 You need to either copy all the github (this repo) scripts and files to the directory from which you are 
 doing the analysis, or you need to add the reposistory to your path. 
@@ -35,6 +35,15 @@ YOu then need to run the script
 metagenomics_analysis.sh short.txt 
 
 This will then do the analysis for you. 
+
+#########MODIFY A DATABASE
+First run the script, pointing out the path to your fasta file containing the sequences you are interested in. 
+You will have to supply a number to start from- this should be calculated from the database you wish to add to. This means there will be non-overlapping numbers in the sequence accessions. If you want to use your own database, then you should leave this blank and it will automatically start at 00000
+
+database_maker_v1.pl PATHANDNAMEOFSEQ NUMBERTOSTART
+
+then simply cat the two files together to the existing database, if needed
+
 
 
 
