@@ -1,3 +1,4 @@
+#Notes before running
 To install qiime first clone two repositories
 qiime-deploy and qiime-deploy-config from github 
 eg:
@@ -15,9 +16,7 @@ The path will be something like this:
 
 $HOME/src/qiime/qiime-1.8.0-release/bin
 
-
-
-#Notes before running
+##This repository
 There are two directories of scripts, one called run_analysis - this is for if you already have databases 
 and another called database_modify, which is for custom database work
 
