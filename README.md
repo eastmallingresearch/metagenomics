@@ -16,6 +16,11 @@ The path will be something like this:
 
 $HOME/src/qiime/qiime-1.8.0-release/bin
 
+usearch-
+you need to download usearch version 5.2.3.2 and put in your local binaries directory- either by symlink
+or by renaming as usearch 
+
+
 ##This repository
 There are two directories of scripts, one called run_analysis - this is for if you already have databases 
 and another called database_modify, which is for custom database work
