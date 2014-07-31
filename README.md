@@ -49,7 +49,7 @@ This will then do the analysis for you.
 First run the script, pointing out the path to your fasta file containing the sequences you are interested in. 
 You will have to supply a number to start from- this should be calculated from the database you wish to add to. This means there will be non-overlapping numbers in the sequence accessions. If you want to use your own database, then you should leave this blank and it will automatically start at 00000
 
-database_maker_v1.pl PATHANDNAMEOFSEQ NUMBERTOSTART
+database_maker_v2.pl PATHANDNAMEOFSEQ NUMBERTOSTART 
 
 then simply cat the two files together to the existing database, if needed
 
