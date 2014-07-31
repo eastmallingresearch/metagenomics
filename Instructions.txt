@@ -1,0 +1,30 @@
+Instructions for processing Qiime data after demultiplexing
+
+Create a text file which is your mapping. The text in this is irrelevant but the header must be as below and tabs must be present between the absent 
+BarcodeSeqeunce and LinkerPrimerSequence fields
+
+#SampleID       BarcodeSequence LinkerPrimerSequence    Description
+TEST                    faeces
+
+Run this command. Make sure the paths are correct for input output and multiplex options
+
+split_libraries_fastq.py -o proc/ -i test.fastq  --sample_id s1 -m test.txt -n 4 --barcode_type 'not-barcoded'
+
+
+the fast_params test file shoudld have in it
+
+pick_otus:enable_rev_strand_match Trucd ote
+pick_otus:max_accepts 1
+pick_otus:max_rejects 8
+pick_otus:stepwords 8
+pick_otus:word_length 8
+
+#NOW RUN THIS
+
+pick_open_reference_otus.py -o otus/ -i proc/seqs.fna -r sh_refs_qiime_ver6_97_19.12.2013.fasta -p uc_fast_params.txt
+
+#SUMMARY DATA
+
+biom summarize-table -i otus/otu_table_mc2_w_tax_no_pynast_failures.biom -o otus/otu_table_mc2_w_tax_no_pynast_failures_summary.txt
+
+
