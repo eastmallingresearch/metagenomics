@@ -30,9 +30,18 @@ The text file short.txt contains a list of the filenames upto the read number eg
 16SBIOFUM-1_S1_L001_R1
 16SBIOFUM-1_S1_L001_R2
 
+
+You can make this by looping through the list of files and clipping the end:
+e.g.:
+
+ls | while read i; do echo $i | sed -e "s/_001.fastq.gz//"; done > names.txt
+
+
 YOu then need to run the script 
 
-metagenomics_analysis.sh short.txt 
+metagenomics_analysis.sh short.txt sh_refs_qiime_ver6_97_s_15.01.2014.fasta sh_taxonomy_qiime_ver6_97_s_15.01.2014.txt 
+
+where you are giving paths to the list, the fasta part of the database and the taxonomy part of the database 
 
 This will then do the analysis for you. 
 

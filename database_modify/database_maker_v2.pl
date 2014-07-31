@@ -9,28 +9,28 @@ my $file         = shift; # get the file name, somehow
 my $seqio_object = Bio::SeqIO->new(-file => $file,-format => 'fasta',);
 my $sf=shift;
 my $tf=shift;
-my $a=shift;
+#my $a=shift;
  
-open(my $qiime, ">>", $tf) 
+open(my $qiime, ">>", "$tf") 
 	or die "cannot open > qiime.txt: $!";
-open(my $fasta, ">>", $sf) 
+open(my $fasta, ">>", "$sf") 
 	or die "cannot open > fasta.txt: $!";
 
-if ($a == undef){
-$a = '000000';
-}
+#if ($a == undef){
+my $a = '000000';
+#}
 
 
 while (my $seq = $seqio_object->next_seq) {
-    my $desc= $seq->desc;
-    my $acc= $seq->id;
-    print "ACCESSION NO ".$acc."\n";
-	my $gb = new Bio::DB::GenBank;
-	my $gbseq = $gb->get_Seq_by_acc($acc); # Accession Number
-    my $gbspecies = $gbseq->species();
-    my $gb_gen= $gbspecies->genus." ";
-	my $gb_spec= $gbspecies->species;
-	my $species=$gb_gen.$gb_spec;
+    #my $desc= $seq->desc;
+    #my $acc= $seq->id;
+    #print "ACCESSION NO ".$acc."\n";
+	#my $gb = new Bio::DB::GenBank;
+	#my $gbseq = $gb->get_Seq_by_acc($acc); # Accession Number
+    #my $gbspecies = $gbseq->species();
+    #my $gb_gen= $gbspecies->genus." ";
+	#my $gb_spec= $gbspecies->species;
+	my $species=$seq->id();
 	print "SPECIES ID ".$species."\n";
 	my $server_endpoint = "http://www.indexfungorum.org/ixfwebservice/fungus.asmx/NameSearchDs";
 	my $post_data=gen_post(\$species);
@@ -89,14 +89,14 @@ while (my $seq = $seqio_object->next_seq) {
 	print "k__".$kingdom.";p__".$phylum.";c__".$class.";o__".$order.";f__".$family.";g__".$genus.";s__".$name."\n";
 	#>SH000001.06FU_JQ347180_reps
 	print ">SH".$a.".14OM_".$key."_reps\n";
-	print $gbseq->seq();
+	print $seq->seq();
 	
 	print $qiime "SH".$a.".14OM_".$key."_reps\t";
 	print $qiime "k__".$kingdom.";p__".$phylum.";c__".$class.";o__".$order.";f__".$family.";g__".$genus.";s__".$name."\n";
 	#>SH000001.06FU_JQ347180_reps
 	print $fasta ">SH".$a.".14OM_".$key."_reps\n";
-	print $fasta $gbseq->seq()."\n";
-
+	print $fasta $seq->seq()."\n";
+#exit;
 }
 
 
