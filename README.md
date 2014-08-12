@@ -67,7 +67,7 @@ You will have to supply a number to start from- this should be calculated from t
 
 The difference between v1 and v2 is that v2 is for consensus seqs- v1 is for annotation of anything in genbank that you have a sequence for.
 
-database_maker_v2.pl PATHANDNAMEOFSEQ NUMBERTOSTART 
+database_maker_v2.pl PATHANDNAMEOFSEQ NUMBERTOSTART qiime_file.txt fasta_file.txt 
 
 then simply cat the two files together to the existing database, if needed, assuming you've sorted the numbers out (script still to develop)
 
@@ -77,5 +77,9 @@ The number to start from can be found like so:
 awk 'NR%2 ' sh_refs_qiime_ver6_99_s_15.01.2014.fasta | cut -d'.' -f1 |  sed 's/[^0-9]*//g' |sort -r| head -1
 
 
+##############
+Running Xiangming's analysis
+
+nohup /home/harrir/git_master/metagenomics/database_modify/database_maker_v2.pl ./consensus/consensus.fasta 459253 custom_number.fa custom_qiime_number.txt &
 
 

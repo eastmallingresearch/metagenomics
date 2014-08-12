@@ -5,20 +5,23 @@ use Bio::SeqIO;
 use Bio::DB::GenBank;
    
 my $file         = shift; # get the file name, somehow
-#my $a=shift;
+my $a=shift;
 my $seqio_object = Bio::SeqIO->new(-file => $file,-format => 'fasta',);
 my $sf=shift;
 my $tf=shift;
-#my $a=shift;
  
 open(my $qiime, ">>", "$tf") 
 	or die "cannot open > qiime.txt: $!";
 open(my $fasta, ">>", "$sf") 
 	or die "cannot open > fasta.txt: $!";
 
-#if ($a == undef){
-my $a = '000000';
-#}
+if ($a <0){
+$a = '000000';
+}
+
+print "The number starting from is $a ";
+
+#exit;
 
 
 while (my $seq = $seqio_object->next_seq) {
