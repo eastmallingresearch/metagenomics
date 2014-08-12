@@ -72,6 +72,10 @@ database_maker_v2.pl PATHANDNAMEOFSEQ NUMBERTOSTART
 then simply cat the two files together to the existing database, if needed, assuming you've sorted the numbers out (script still to develop)
 
 
+The number to start from can be found like so:
+
+awk 'NR%2 ' sh_refs_qiime_ver6_99_s_15.01.2014.fasta | cut -d'.' -f1 |  sed 's/[^0-9]*//g' |sort -r| head -1
+
 
 
 
