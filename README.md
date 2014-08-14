@@ -82,4 +82,14 @@ Running Xiangming's analysis
 
 nohup /home/harrir/git_master/metagenomics/database_modify/database_maker_v2.pl ./consensus/consensus.fasta 459253 custom_number.fa custom_qiime_number.txt &
 
+cp ./database/custom_qiime_number.txt ./working_databases/.
+cp ./database/custom_number.fa ./working_databases/.
+cat sh_refs_qiime_ver6_99_s_15.01.2014.fasta custom_number.fa >custom_numbered.fasta
+cat sh_taxonomy_qiime_ver6_99_s_15.01.2014.txt custom_qiime_number.txt >custom_taxonomy_numbered.txt
+
+
+nohup /home/harrir/git_master/metagenomics/run_analysis/process_files.sh 18Snames.txt &
+nohup  /home/harrir/git_master/metagenomics/run_analysis/metagenomics_analysis.sh 18Snames.txt ../working_databases/custom_taxonomy_numbered.txt ../working_databases/custom_numbered.fasta  &
+ nohup /home/harrir/git_master/metagenomics/run_analysis/process_files.sh samples_2.txt &
+nohup  /home/harrir/git_master/metagenomics/run_analysis/metagenomics_analysis.sh samples_2.txt ../working_databases/custom_taxonomy_numbered.txt ../working_databases/custom_numbered.fasta  &
 
